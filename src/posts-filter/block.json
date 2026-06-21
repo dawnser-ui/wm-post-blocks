@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmpb/posts-filter",
+	"version": "1.0.0",
+	"title": "Posts Filter",
+	"category": "widgets",
+	"icon": "filter",
+	"description": "Category and tag filters that drive the Posts Grid. Place it anywhere on the same page — it does not need to wrap the grid.",
+	"keywords": [ "filter", "category", "tag", "posts" ],
+	"textdomain": "wm-posts-blocks",
+	"supports": {
+		"html": false,
+		"interactivity": true
+	},
+	"attributes": {
+		"showCategories": {
+			"type": "boolean",
+			"default": true
+		},
+		"showTags": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

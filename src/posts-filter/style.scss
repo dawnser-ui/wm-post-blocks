@@ -1,0 +1,97 @@
+/**
+ * Posts Filter — shared styles (front end + editor).
+ *
+ * Filters render as accessible pill toggles: a visually-hidden checkbox keeps
+ * full keyboard/screen-reader support, while the adjacent label is styled as a
+ * clickable pill that fills with the brand colour when checked.
+ */
+
+.wmpb-filter {
+	--wmpb-accent: #2563eb;
+	--wmpb-line: color-mix(in srgb, currentColor 18%, transparent);
+	--wmpb-muted: color-mix(in srgb, currentColor 60%, transparent);
+
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem 2.5rem;
+	margin-bottom: 1.75rem;
+
+	&__group {
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	&__legend {
+		margin: 0 0 0.6rem;
+		padding: 0;
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--wmpb-muted);
+	}
+
+	&__pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	// Visually hidden, but still focusable and announced.
+	&__check {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	&__pill {
+		cursor: pointer;
+	}
+
+	&__pill-text {
+		display: inline-block;
+		padding: 0.45rem 0.95rem;
+		border-radius: 999px;
+		border: 1px solid var(--wmpb-line);
+		font-size: 0.88rem;
+		line-height: 1;
+		transition: background 0.15s ease, color 0.15s ease,
+			border-color 0.15s ease, transform 0.1s ease;
+	}
+
+	&__pill:hover .wmpb-filter__pill-text {
+		border-color: var(--wmpb-accent);
+		color: var(--wmpb-accent);
+	}
+
+	// Active (checked) state.
+	&__check:checked + .wmpb-filter__pill-text {
+		background: var(--wmpb-accent);
+		border-color: var(--wmpb-accent);
+		color: #fff;
+	}
+
+	// Clear keyboard focus ring on the pill.
+	&__check:focus-visible + .wmpb-filter__pill-text {
+		outline: 2px solid var(--wmpb-accent);
+		outline-offset: 2px;
+	}
+
+	&__pill:active .wmpb-filter__pill-text {
+		transform: scale(0.96);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wmpb-filter__pill-text {
+		transition: none;
+	}
+}
