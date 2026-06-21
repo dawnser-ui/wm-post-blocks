@@ -1,0 +1,22 @@
+{
+	"name": "wm-posts-blocks",
+	"version": "1.0.0",
+	"description": "Two synced Gutenberg blocks (Posts Grid + Posts Filter) with auto-seeded demo content, built on the WordPress Interactivity API.",
+	"author": "Shachar Srebrenik",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build --experimental-modules",
+		"start": "wp-scripts start --experimental-modules",
+		"format": "wp-scripts format",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:clean": "wp-env clean all"
+	},
+	"devDependencies": {
+		"@wordpress/env": "^10.10.0",
+		"@wordpress/scripts": "^30.7.0"
+	}
+}
