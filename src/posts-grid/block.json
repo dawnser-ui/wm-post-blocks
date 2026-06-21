@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmpb/posts-grid",
+	"version": "1.0.0",
+	"title": "Posts Grid",
+	"category": "widgets",
+	"icon": "grid-view",
+	"description": "Displays demo posts in a configurable, filterable grid. Pagination lives inside it as an inner block.",
+	"keywords": [ "posts", "grid", "filter" ],
+	"textdomain": "wm-posts-blocks",
+	"supports": {
+		"html": false,
+		"interactivity": true
+	},
+	"attributes": {
+		"columns": {
+			"type": "number",
+			"default": 0
+		},
+		"perPage": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

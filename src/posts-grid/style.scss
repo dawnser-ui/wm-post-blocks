@@ -1,0 +1,249 @@
+/**
+ * Posts Grid — shared styles (front end + editor).
+ *
+ * Layout is driven by CSS custom properties set from settings:
+ *   --wmpb-columns  number of columns
+ *   --wmpb-accent   brand colour (chips, links, buttons, progress bar)
+ *   --wmpb-ratio    featured-image aspect ratio
+ * Card "style" (elevated / bordered / minimal) is switched by a class on the
+ * wrapper, so the same markup serves every look.
+ */
+
+.wmpb-posts-grid {
+	--wmpb-accent: #2563eb;
+	--wmpb-ratio: 3 / 2;
+	--wmpb-radius: 16px;
+	--wmpb-card-bg: #fff;
+	--wmpb-muted: color-mix(in srgb, currentColor 60%, transparent);
+	--wmpb-line: color-mix(in srgb, currentColor 12%, transparent);
+
+	// ---- Toolbar ----------------------------------------------------------
+	&__toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1rem;
+	}
+
+	&__count {
+		font-size: 0.9rem;
+		color: var(--wmpb-muted);
+		font-variant-numeric: tabular-nums;
+	}
+
+	&__clear {
+		border: 0;
+		background: none;
+		padding: 0.35rem 0.6rem;
+		border-radius: 999px;
+		font: inherit;
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--wmpb-accent);
+		cursor: pointer;
+
+		&:hover {
+			background: color-mix(in srgb, var(--wmpb-accent) 12%, transparent);
+		}
+	}
+
+	// ---- Progress bar (loading) ------------------------------------------
+	&__progress {
+		height: 3px;
+		margin-bottom: 1rem;
+		border-radius: 999px;
+		overflow: hidden;
+		background: color-mix(in srgb, var(--wmpb-accent) 18%, transparent);
+		position: relative;
+
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			width: 40%;
+			border-radius: inherit;
+			background: var(--wmpb-accent);
+			animation: wmpb-indeterminate 1.1s ease-in-out infinite;
+		}
+	}
+
+	// ---- Grid -------------------------------------------------------------
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(var(--wmpb-columns, 3), 1fr);
+		gap: 1.5rem;
+		transition: opacity 0.2s ease, filter 0.2s ease;
+
+		&.is-loading {
+			opacity: 0.55;
+			filter: saturate(0.85);
+			pointer-events: none;
+		}
+
+		template {
+			display: none;
+		}
+	}
+
+	&__empty {
+		margin-top: 1.5rem;
+		padding: 2rem;
+		text-align: center;
+		font-style: italic;
+		color: var(--wmpb-muted);
+		border: 1px dashed var(--wmpb-line);
+		border-radius: var(--wmpb-radius);
+	}
+}
+
+// ---- Card ----------------------------------------------------------------
+.wmpb-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border-radius: var(--wmpb-radius);
+	background: var(--wmpb-card-bg);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+	&__media {
+		position: relative;
+		display: block;
+		overflow: hidden;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		aspect-ratio: var(--wmpb-ratio);
+		object-fit: cover;
+		transition: transform 0.4s ease;
+	}
+
+	&__chip {
+		position: absolute;
+		top: 0.75rem;
+		left: 0.75rem;
+		padding: 0.25rem 0.6rem;
+		border-radius: 999px;
+		background: var(--wmpb-accent);
+		color: #fff;
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 1.1rem 1.15rem 1.35rem;
+	}
+
+	&__meta {
+		margin: 0;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+		color: var(--wmpb-muted);
+	}
+
+	&__title {
+		margin: 0;
+		font-size: 1.15rem;
+		line-height: 1.3;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+			transition: color 0.15s ease;
+
+			&:hover {
+				color: var(--wmpb-accent);
+			}
+		}
+	}
+
+	&__excerpt {
+		margin: 0;
+		font-size: 0.92rem;
+		line-height: 1.55;
+		color: var(--wmpb-muted);
+	}
+
+	&__tags {
+		margin: 0.15rem 0 0;
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--wmpb-accent);
+	}
+
+	&:hover {
+		.wmpb-card__image {
+			transform: scale(1.05);
+		}
+	}
+}
+
+// ---- Card style variants -------------------------------------------------
+.wmpb-style-elevated .wmpb-card {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.08);
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 18px 40px rgba(0, 0, 0, 0.14);
+	}
+}
+
+.wmpb-style-bordered .wmpb-card {
+	border: 1px solid var(--wmpb-line);
+
+	&:hover {
+		border-color: color-mix(in srgb, var(--wmpb-accent) 50%, transparent);
+	}
+}
+
+.wmpb-style-minimal .wmpb-card {
+	--wmpb-card-bg: transparent;
+
+	.wmpb-card__media {
+		border-radius: var(--wmpb-radius);
+	}
+}
+
+// ---- Motion --------------------------------------------------------------
+@keyframes wmpb-indeterminate {
+	0% {
+		left: -40%;
+	}
+	100% {
+		left: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wmpb-card,
+	.wmpb-card__image,
+	.wmpb-posts-grid__items {
+		transition: none;
+	}
+	.wmpb-posts-grid__progress::after {
+		animation: none;
+	}
+}
+
+// ---- Responsive ----------------------------------------------------------
+@media (max-width: 781px) {
+	.wmpb-posts-grid__items {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.wmpb-posts-grid__items {
+		grid-template-columns: 1fr;
+	}
+}

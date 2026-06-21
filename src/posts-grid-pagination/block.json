@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wmpb/posts-grid-pagination",
+	"version": "1.0.0",
+	"title": "Posts Grid Pagination",
+	"category": "widgets",
+	"icon": "controls-forward",
+	"description": "Previous / next pagination for the Posts Grid. Only usable inside a Posts Grid block.",
+	"textdomain": "wm-posts-blocks",
+	"parent": [ "wmpb/posts-grid" ],
+	"supports": {
+		"html": false,
+		"interactivity": true,
+		"inserter": false
+	},
+	"editorScript": "file:./index.js",
+	"viewScriptModule": "file:./view.js",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}

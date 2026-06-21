@@ -1,0 +1,12 @@
+/**
+ * Posts Grid — editor-only styles.
+ *
+ * Visually separates the (non-editable) preview grid from the locked pagination
+ * inner block so editors understand what is dynamic.
+ */
+
+.wmpb-posts-grid__pagination {
+	margin-top: 1.5rem;
+	padding-top: 1rem;
+	border-top: 1px dashed rgba(0, 0, 0, 0.15);
+}

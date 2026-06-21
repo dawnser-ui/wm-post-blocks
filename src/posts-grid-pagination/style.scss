@@ -1,0 +1,52 @@
+/**
+ * Posts Grid Pagination — shared styles (front end + editor).
+ *
+ * Inherits the brand colour from the grid wrapper's --wmpb-accent custom
+ * property (with a sensible fallback when previewed on its own).
+ */
+
+.wmpb-pagination {
+	--wmpb-accent: #2563eb;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	margin-top: 2rem;
+
+	&__btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.55rem 1.15rem;
+		border: 1px solid var(--wmpb-accent);
+		border-radius: 999px;
+		background: transparent;
+		color: var(--wmpb-accent);
+		font: inherit;
+		font-weight: 600;
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+
+		&:hover:not(:disabled) {
+			background: var(--wmpb-accent);
+			color: #fff;
+		}
+
+		&:disabled {
+			opacity: 0.35;
+			cursor: not-allowed;
+		}
+	}
+
+	&__status {
+		font-size: 0.9rem;
+		font-variant-numeric: tabular-nums;
+		color: color-mix(in srgb, currentColor 70%, transparent);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wmpb-pagination__btn {
+		transition: none;
+	}
+}
